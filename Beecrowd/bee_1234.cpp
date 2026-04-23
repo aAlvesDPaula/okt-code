@@ -13,12 +13,12 @@ int main(){
                 aux = 1;
             }
             else if(aux == 1){
-                x[i] == tolower(x[i]);
+                x[i] = tolower(x[i]);
                 aux = 0;
             }
         }
         
-        cout << x << "\n";
+        cout << x << endl;
     }
     
 
