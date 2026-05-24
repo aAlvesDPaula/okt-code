@@ -2,16 +2,28 @@
 using namespace std;
 int main()
 {
-    int x0, y0, x1, y1;
-    int x2, y2, x3, y3;
-
-    cin >> x0 >> y0 >> x1 >> y1;
-    cin >> x2 >> y2 >> x3 >> y3;
-
-    if(x0 <= x3 && x2 <= x1){
-        if(y0 <= y3 && y2 <= y1)
-            cout << 1;
+    queue<char> times;
+    for (int i = 0; i < 16; i++)
+    {
+        times.push('A' + i);
     }
-    else
-        cout << 0;
+    for(int i = 0; i < 15; i++)
+    {
+        int t1, t2;
+        cin >> t1 >> t2;
+        if(t1 > t2){
+            char add = times.front();
+            times.pop();
+            times.pop();
+            times.push(add);
+        }
+        else{
+            times.pop();
+            char add = times.front();
+            times.push(add);
+            times.pop();
+            
+        }
+    }
+    cout << times.front() << '\n';
 }

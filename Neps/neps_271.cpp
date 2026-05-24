@@ -10,50 +10,34 @@ int main()
         string c;
         cin >> c;
         stack<char> cad;
-        if (c.size() == 2)
+        for (int j = 0; j < c.size(); j++)
         {
-            if (c[0] == '(' && c[1] == ')')
+            if (c[j] == '{' || c[j] == '(' || c[j] == '[')
             {
-                cout << 'S' << endl;
+                cad.push(c[j]);
             }
-            else if (c[0] == '{' && c[1] == '}')
+            else if (!cad.empty())
             {
-                cout << 'S' << endl;
-            }
-            else if (c[0] == '[' && c[1] == ']')
-            {
-                cout << 'S' << endl;
-            }
-            else
-                cout << 'N' << endl;
-        }
-        else if (c.size() % 2 != 0)
-        {
-            cout << 'N' << endl;
-        }
-        else
-        {
-            int aux = c.size();
-            while (aux >= c.size())
-            {
-                if (c[aux] == '(' && cad.top() == ')')
-                {
+                if (c[j] == '}' && cad.top() == '{')
                     cad.pop();
-                }
-                else if (c[i] == '{' && cad.top() == '}')
-                {
+                else if (c[j] == ')' && cad.top() == '(')
                     cad.pop();
-                }
-                else if (c[aux] == '[' && cad.top() == ']')
-                {
+                else if (c[j] == ']' && cad.top() == '[')
                     cad.pop();
+                else{
+                    cad.push(c[j]);
+                    break;
                 }
-                else
-                    cad.push(c[aux]);
             }
-            aux--;
+            else if (cad.empty())
+            {
+                if (c[j] == '}' || c[j] == ')' || c[j] == ']')
+                {
+                    cad.push(c[j]);
+                    break;
+                }
+            }
         }
-
         if (cad.empty())
         {
             cout << 'S' << endl;
@@ -61,5 +45,4 @@ int main()
         else
             cout << 'N' << endl;
     }
-    return 0;
 }
